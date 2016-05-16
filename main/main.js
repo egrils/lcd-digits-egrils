@@ -1,17 +1,12 @@
 function buildDigit(inputs) {
-    var digits = inputs.toString().split("");
-
-    return digits;
+    return inputs.toString().split("");
 }
 
 function buildLcdDigit(digits) {
     var lcdDigits = [];
 
     digits.forEach(function (digit) {
-        loadLcdDigits().forEach(function (lcdDigit) {
-            if(lcdDigit.digit === digit)
-                lcdDigits.push(lcdDigit);
-        });
+        lcdDigits.push(loadLcdDigits()[digit]);
     });
 
     return lcdDigits;
@@ -28,13 +23,13 @@ function buildLcdLine(lcdDigits) {
         allSecondLine += lcdDigit.secondLine + ' ';
         allThirdLine += lcdDigit.thirdLine + ' ';
     });
-    lcdLines = {lcdDigits:lcdDigits,allFirstLine:allFirstLine,allSecondLine:allSecondLine,allThirdLine:allThirdLine};
+    lcdLines = {allFirstLine:allFirstLine,allSecondLine:allSecondLine,allThirdLine:allThirdLine};
 
     return lcdLines;
 }
 
 function buildLcdDigitsText(lcdLines) {
-    return '```' + '\n' + lcdLines.allFirstLine + '\n' + lcdLines.allSecondLine + '\n' + lcdLines.allThirdLine + '\n' + '```';
+    return lcdLines.allFirstLine + '\n' + lcdLines.allSecondLine + '\n' + lcdLines.allThirdLine + '\n';
 }
 
 function consoleLcdDigits(inputs) {
